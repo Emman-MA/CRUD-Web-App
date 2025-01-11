@@ -17,5 +17,6 @@ namespace CRUDWebApp.Models
         [ForeignKey("AppUser")]
         public string? AppUserId { get; set; }
         public AppUser? AppUser { get; set; }
+
     }
 }
