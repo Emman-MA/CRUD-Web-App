@@ -1,10 +1,10 @@
 ﻿using CRUDWebApp.Data.Enum;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace CRUDWebApp.Models
 {
-    public class Club
+    public class Race
     {
         [Key]
         public int Id { get; set; }
@@ -14,11 +14,9 @@ namespace CRUDWebApp.Models
         [ForeignKey("Address")]
         public int AddressId { get; set; }
         public Address Address { get; set; }
-        public ClubCategory ClubCategory { get; set; }
+        public RaceCategory RaceCategory { get; set; }
         [ForeignKey("AppUser")]
         public string? AppUserId { get; set; }
         public AppUser? AppUser { get; set; }
-
     }
-
 }
