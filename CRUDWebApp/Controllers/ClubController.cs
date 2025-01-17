@@ -1,6 +1,7 @@
 ﻿using CRUDWebApp.Data;
 using CRUDWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRUDWebApp.Controllers
 {
@@ -16,5 +17,12 @@ namespace CRUDWebApp.Controllers
             List<Club> clubs = _context.Clubs.ToList();
             return View(clubs);
         }
+
+        public IActionResult Detail(int id)
+        {
+            Club club = _context.Clubs.Include(a => a.Address).FirstOrDefault(c => c.Id == id);
+            return View(club);
+        }
+
     }
 }

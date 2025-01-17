@@ -1,6 +1,7 @@
 ﻿using CRUDWebApp.Data;
 using CRUDWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRUDWebApp.Controllers
 {
@@ -15,6 +16,12 @@ namespace CRUDWebApp.Controllers
         {
             List<Race> races = _context.Races.ToList();
             return View(races);
+        }
+
+        public IActionResult Detail(int id)
+        {
+            Race race = _context.Races.Include(a => a.Address).FirstOrDefault(c => c.Id == id);
+            return View(race);
         }
     }
 }
