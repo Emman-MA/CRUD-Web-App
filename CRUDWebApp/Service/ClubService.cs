@@ -32,11 +32,6 @@ namespace CRUDWebApp.Service
             return await _context.Clubs.ToListAsync();
         }
 
-        public async Task<List<State>> GetAllStates()
-        {
-            return await _context.States.ToListAsync();
-        }
-
         public async Task<IEnumerable<Club>> GetSliceAsync(int offset, int size)
         {
             return await _context.Clubs.Include(i => i.Address).Skip(offset).Take(size).ToListAsync();
@@ -92,11 +87,6 @@ namespace CRUDWebApp.Service
         public async Task<IEnumerable<Club>> GetClubsByState(string state)
         {
             return await _context.Clubs.Where(c => c.Address.State.Contains(state)).ToListAsync();
-        }
-
-        public async Task<List<City>> GetAllCitiesByState(string state)
-        {
-            return await _context.Cities.Where(c => c.StateCode.Contains(state)).ToListAsync();
         }
     }
 }

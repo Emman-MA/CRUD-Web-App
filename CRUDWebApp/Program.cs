@@ -1,4 +1,6 @@
 using CRUDWebApp.Data;
+using CRUDWebApp.Interfaces;
+using CRUDWebApp.Service;
 using Microsoft.EntityFrameworkCore;
 using RunGroopWebApp.Data;
 
@@ -6,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IClubService, ClubService>();
+builder.Services.AddScoped<IRaceService, RaceService>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
