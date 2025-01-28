@@ -25,5 +25,10 @@ namespace CRUDWebApp.Controllers
             return View(club);
         }
 
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
+
     }
 }
