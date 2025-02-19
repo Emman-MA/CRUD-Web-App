@@ -1,6 +1,7 @@
 ﻿using CRUDWebApp.Data;
 using CRUDWebApp.Interfaces;
 using CRUDWebApp.Models;
+using CRUDWebApp.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,6 +24,22 @@ namespace CRUDWebApp.Controllers
         {
             Race race = await _raceService.GetByIdAsync(id);
             return View(race);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Race race)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(race);
+            }
+            _raceService.Add(race);
+            return RedirectToAction("Index");
         }
     }
 }

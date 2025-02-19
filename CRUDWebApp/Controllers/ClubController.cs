@@ -2,6 +2,7 @@
 using CRUDWebApp.Interfaces;
 using CRUDWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using CRUDWebApp.Data.Enum;
 using Microsoft.EntityFrameworkCore;
 
 namespace CRUDWebApp.Controllers
@@ -25,10 +26,20 @@ namespace CRUDWebApp.Controllers
             return View(club);
         }
 
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Create(Club club)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(club);
+            }
+            _clubService.Add(club);
+            return RedirectToAction("Index");
+        }
     }
 }
