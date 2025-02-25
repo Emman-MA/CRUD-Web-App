@@ -10,9 +10,11 @@ namespace CRUDWebApp.Controllers
     public class ClubController : Controller
     {
         private readonly IClubService _clubService;
-        public ClubController(IClubService clubService)
+        private readonly IPhotoService _photoService;
+        public ClubController(IClubService clubService, IPhotoService photoService)
         {
             _clubService = clubService;
+            _photoService = photoService;
         }
         public async Task<IActionResult> Index()
         {
@@ -34,9 +36,9 @@ namespace CRUDWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Club club)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(club);
+               // var result = await _photoService.AddPhotoAsync()
             }
             _clubService.Add(club);
             return RedirectToAction("Index");

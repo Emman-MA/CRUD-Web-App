@@ -1,4 +1,5 @@
 using CRUDWebApp.Data;
+using CRUDWebApp.Helpers;
 using CRUDWebApp.Interfaces;
 using CRUDWebApp.Service;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IClubService, ClubService>();
 builder.Services.AddScoped<IRaceService, RaceService>();
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
